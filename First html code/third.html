@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Semantic Elements Demo</title>
+    <style>
+        body {
+            background-color: #E0E0E2;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            color: #333;
+        }
+        nav {
+            background: #434343;
+            padding: 1em 0;
+        }
+        nav ul {
+            display: flex;
+            gap: 2em;
+            justify-content: center;
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+        nav a {
+            color: #FA9F42;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        nav a:hover {
+            color: #721817;
+        }
+        main {
+            flex: 3;
+        }
+        article {
+            background: #fff;
+            margin-bottom: 2em;
+            padding: 1.5em;
+            border-radius: 5px;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+        }
+        h2 {
+            color: #721817;
+        }
+        h2 > span {
+            color: #fa9f42;
+            font-size: 0.75em;
+        }
+        h3 {
+            color: #721817;
+        }
+        aside {
+            flex: 1;
+            background-color: #f4f4f6;
+            padding: 1.5em;
+            border-radius: 5px;
+            margin-left: 24px;
+            min-width: 230px;
+        }
+        aside h3 {
+            color: #721817;
+        }
+        aside ul {
+            padding-left: 20px;
+        }
+        footer {
+            background: #434343;
+            color: #fff;
+            text-align: center;
+            padding: 1em 0;
+            margin-top: 2em;
+        }
+        #copyright {
+            font-size: 0.75em;
+            margin-top: 0.5em;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <ul>
+            <li><a href="#news">News</a></li>
+            <li><a href="#features">Features</a></li>
+            <li><a href="#about">About</a></li>
+        </ul>
+    </nav>
+    
+    <div style="display: flex; max-width: 1200px; margin: 32px auto;">
+        <main>
+            <!-- Article 1 -->
+            <article>
+                <header>
+                    <h2>Welcome to <span>NEW</span> Semantic Web</h2>
+                </header>
+                <section>
+                    <h3>Introduction</h3>
+                    <p>
+                        HTML5 provides semantic elements to define the structure and meaning of your website content, making it easier for browsers and assistive technologies to interpret.
+                    </p>
+                </section>
+                <section>
+                    <h3>Key Elements</h3>
+                    <ul>
+                        <li><code>&lt;nav&gt;</code> for site navigation</li>
+                        <li><code>&lt;article&gt;</code> for standalone content</li>
+                        <li><code>&lt;section&gt;</code> for thematic groupings</li>
+                        <li><code>&lt;aside&gt;</code> for tangential content</li>
+                        <li><code>&lt;footer&gt;</code> for closing information</li>
+                    </ul>
+                </section>
+            </article>
+            
+            <!-- Article 2 -->
+            <article>
+                <header>
+                    <h2>Feature Spotlight <span>NEW</span></h2>
+                </header>
+                <section>
+                    <h3>Why Use Semantic Tags?</h3>
+                    <p>
+                        Semantic tags improve SEO, accessibility, and overall code readability, ensuring your webpage is usable and friendly for everyone.
+                    </p>
+                </section>
+            </article>
+        </main>
+        
+        <!-- Aside Sidebar -->
+        <aside>
+            <h3>Related Topics</h3>
+            <ul>
+                <li>HTML5 Elements</li>
+                <li>Responsive Design</li>
+                <li>Web Accessibility</li>
+            </ul>
+            <h3>External Resources</h3>
+            <ul>
+                <li><a href="https://developer.mozilla.org/">MDN Web Docs</a></li>
+                <li><a href="https://www.w3schools.com/">W3Schools</a></li>
+            </ul>
+        </aside>
+    </div>
+    
+    <!-- Footer -->
+    <footer>
+        <section>
+            <p>Contact us at info@semanticweb.com</p>
+        </section>
+        <section>
+            <p id="copyright">&copy; 2025 Semantic Web, All Rights Reserved.</p>
+        </section>
+    </footer>
+</body>
+</html>

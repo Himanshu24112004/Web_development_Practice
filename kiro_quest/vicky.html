@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Attendance Dashboard</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: rgb(238, 238, 172);
+      padding: 30px;
+      color: #333;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 24px;
+      font-size: 1.8rem;
+      color: #444444;
+    }
+
+    /* Total Attendance Card */
+    .total-card {
+      background: #fff;
+      border-radius: 12px;
+      padding: 24px;
+      text-align: center;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      margin-bottom: 28px;
+    }
+
+    .total-card h2 { font-size: 1.1rem; color: #666; margin-bottom: 8px; }
+
+    .total-card .big-percent {
+      font-size: 3rem;
+      font-weight: bold;
+    }
+
+    .total-card .badge {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 6px 18px;
+      border-radius: 20px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: #fff;
+    }
+
+    .eligible   { background-color: #28a745; }
+    .ineligible { background-color: #dc3545; }
+    .green-text { color: #28a745; }
+    .red-text   { color: #dc3545; }
+
+    /* Layout: chart + subjects side by side */
+    .dashboard {
+      display: flex;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+
+    .chart-box {
+      background: #fff;
+      border-radius: 12px;
+      padding: 24px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      flex: 1 1 280px;
+      max-width: 340px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .chart-box h2 {
+      font-size: 1rem;
+      color: #555;
+      margin-bottom: 16px;
+    }
+
+    .chart-box canvas { max-width: 260px; }
+
+    /* Subject cards */
+    .subjects-box {
+      flex: 2 1 400px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .subject-card {
+      background: #fff;
+      border-radius: 10px;
+      padding: 16px 20px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+
+    .subject-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+
+    .subject-name { font-weight: 600; font-size: 0.95rem; }
+
+    .subject-percent {
+      font-weight: 700;
+      font-size: 1rem;
+    }
+
+    .bar-track {
+      background: #e9ecef;
+      border-radius: 6px;
+      height: 10px;
+      overflow: hidden;
+    }
+
+    .bar-fill {
+      height: 100%;
+      border-radius: 6px;
+      transition: width 0.6s ease;
+    }
+
+    .bar-green { background-color: #28a745; }
+    .bar-red   { background-color: #dc3545; }
+
+    .dot {
+      display: inline-block;
+      width: 10px; height: 10px;
+      border-radius: 50%;
+      margin-right: 6px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Attendance Dashboard</h1>
+
+  <!-- Total Card -->
+  <div class="total-card">
+    <h2>Overall Attendance</h2>
+    <div class="big-percent" id="totalPercent"></div>
+    <div class="badge" id="eligibilityBadge"></div>
+  </div>
+
+  <div class="dashboard">
+    <!-- Pie Chart -->
+    <div class="chart-box">
+      <h2>Overall Breakdown</h2>
+      <canvas id="pieChart"></canvas>
+    </div>
+
+    <!-- Subject Bars -->
+    <div class="subjects-box" id="subjectsBox"></div>
+  </div>
+
+  <script>
+    // const subjects = [
+    //   { name: "Applied Mathematics", pct: 95 },
+    //   { name: "Web Development",     pct: 57 },
+    //   { name: "PFC",                 pct: 67 },
+    //   { name: "Digital Logic",       pct: 96 },
+    //   { name: "CDC",                 pct: 78 },
+    //   { name: "CP",                  pct: 96 },
+    //   { name: "JAVA",                pct: 85 },
+    // ];
+
+    const subjectList = [
+//   "Applied Mathematics",
+//   "Web Development",
+//   "PFC",
+//   "Digital Logic",
+//   "CDC",
+//   "CP",
+//   "JAVA",
+
+  "Mathematics",
+  "Physics",
+  "Chemistry",
+  "Computer Science",
+  "English",
+  "Biology",
+  "History",
+  "Geography"
+];
+
+const attendanceData = JSON.parse(localStorage.getItem("attendance")) || [];
+
+const subjects = subjectList.map(subject => {
+  const records = attendanceData.filter(e => e.subject === subject);
+
+  const total = records.length;
+  const present = records.filter(e => e.status === "Present").length;
+
+  const pct = total === 0 ? 0 : Math.round((present / total) * 100);
+
+  return { name: subject, pct };
+});
+
+    // Compute overall average
+    const overall = Math.round(subjects.reduce((s, x) => s + x.pct, 0) / subjects.length);
+    const isEligible = overall >= 75;
+
+    // Total card
+    const totalEl = document.getElementById('totalPercent');
+    totalEl.textContent = overall + '%';
+    totalEl.className = 'big-percent ' + (isEligible ? 'green-text' : 'red-text');
+
+    const badge = document.getElementById('eligibilityBadge');
+    badge.textContent = isEligible ? '✓ Eligible' : '✗ Not Eligible';
+    badge.className = 'badge ' + (isEligible ? 'eligible' : 'ineligible');
+
+    // Subject cards
+    const box = document.getElementById('subjectsBox');
+    subjects.forEach(s => {
+      const green = s.pct >= 75;
+      const colorClass = green ? 'green-text' : 'red-text';
+      const barClass   = green ? 'bar-green'  : 'bar-red';
+      const dotColor   = green ? '#28a745'    : '#dc3545';
+
+      box.innerHTML += `
+        <div class="subject-card">
+          <div class="subject-header">
+            <span class="subject-name">
+              <span class="dot" style="background:${dotColor}"></span>${s.name}
+            </span>
+            <span class="subject-percent ${colorClass}">${s.pct}%</span>
+          </div>
+          <div class="bar-track">
+            <div class="bar-fill ${barClass}" style="width:${s.pct}%"></div>
+          </div>
+        </div>`;
+    });
+
+    // Pie chart
+    const attended = overall;
+    const missed   = 100 - overall;
+    const pieColor = isEligible ? '#28a745' : '#dc3545';
+
+    new Chart(document.getElementById('pieChart'), {
+      type: 'pie',
+      data: {
+        labels: ['Attended', 'Missed'],
+        datasets: [{
+          data: [attended, missed],
+          backgroundColor: [pieColor, '#e9ecef'],
+          borderWidth: 2,
+          borderColor: '#fff'
+        }]
+      },
+      options: {
+        plugins: {
+          legend: { position: 'bottom' },
+          tooltip: {
+            callbacks: {
+              label: ctx => ` ${ctx.label}: ${ctx.parsed}%`
+            }
+          }
+        }
+      }
+    });
+  </script>
+</body>
+</html>

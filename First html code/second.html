@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Himanshu's Portfolio - Web Developer & CS Student</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Header/Navigation Section -->
+    <header class="header">
+        <div class="container">
+            <h1 class="portfolio-title">Himanshu Kumar</h1>
+            <p class="tagline">BTech Computer Science | Web Developer | Tech Enthusiast</p>
+        </div>
+    </header>
+
+    <!-- Navigation Menu -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="#about" class="nav-link">About</a>
+            <a href="#qualifications" class="nav-link">Education</a>
+            <a href="#projects" class="nav-link">Projects</a>
+            <a href="#contact" class="nav-link">Contact</a>
+        </div>
+    </nav>
+
+    <main class="container">
+        <!-- About Me Section -->
+        <section id="about" class="section about-section">
+            <h2 class="section-title">About Me</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <div class="info-item">
+                        <span class="label">Name:</span>
+                        <span class="value">Himanshu Kumar</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="label">Date of Birth:</span>
+                        <span class="value">24 November 2004</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="label">Age:</span>
+                        <span class="value">20 years</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="label">Status:</span>
+                        <span class="value">BTech Computer Science Student</span>
+                    </div>
+                    <p class="bio">Passionate about web development and cybersecurity. Currently pursuing BTech in Computer Science Engineering with a focus on building secure and innovative digital solutions.</p>
+                </div>
+                <img src="D:\First html code\IMG_20240715_165816.jpg" alt="Himanshu Kumar" class="profile-image">
+            </div>
+        </section>
+
+        <!-- Qualifications Section -->
+        <section id="qualifications" class="section qualifications-section">
+            <h2 class="section-title">Education & Qualifications</h2>
+            <div class="table-wrapper">
+                <table class="qualifications-table">
+                    <thead>
+                        <tr>
+                            <th>Qualification</th>
+                            <th>School/College</th>
+                            <th>Passing Year</th>
+                            <th>Status</th>
+                            <th>Percentage/CGPA</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>10<sup>th</sup></td>
+                            <td>Gyan Jyoti Public School</td>
+                            <td>2022</td>
+                            <td><span class="badge passed">Passed</span></td>
+                            <td>86.4%</td>
+                        </tr>
+                        <tr>
+                            <td>12<sup>th</sup></td>
+                            <td>Gyan Jyoti Public School</td>
+                            <td>2024</td>
+                            <td><span class="badge passed">Passed</span></td>
+                            <td>74.6%</td>
+                        </tr>
+                        <tr>
+                            <td>BTech Graduation</td>
+                            <td>Rungta International Skills University</td>
+                            <td>Ongoing</td>
+                            <td><span class="badge ongoing">In Progress</span></td>
+                            <td>---</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Hobbies & Interests Section -->
+        <section id="interests" class="section interests-section">
+            <h2 class="section-title">Hobbies & Interests</h2>
+            <div class="interests-grid">
+                <div class="interest-card">
+                    <h3>🎵 Music</h3>
+                    <p>Listening to music with headphones and singing along</p>
+                </div>
+                <div class="interest-card">
+                    <h3>🏏 Sports</h3>
+                    <p>Playing cricket and kabaddi</p>
+                </div>
+                <div class="interest-card">
+                    <h3>📺 Entertainment</h3>
+                    <p>Watching Taarak Mehta Ka Ooltah Chashmah</p>
+                </div>
+                <div class="interest-card">
+                    <h3>🔍 Exploration</h3>
+                    <p>Exploring new technologies and innovations</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="section projects-section">
+            <h2 class="section-title">My Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <h3>🔐 Cybersecurity Framework for Rural Digital Banking</h3>
+                    <p>Developing a comprehensive cybersecurity framework to protect rural digital banking systems and ensure secure financial transactions in underserved communities.</p>
+                    <span class="project-tag">Cybersecurity</span>
+                </div>
+                <div class="project-card">
+                    <h3>🎮 Indian Heritage Through Games</h3>
+                    <p>Creating an interactive web-based game that showcases Indian culture, heritage, and traditions through geographical divisions and engaging gameplay.</p>
+                    <span class="project-tag">Web Development</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="section contact-section">
+            <h2 class="section-title">Get In Touch</h2>
+            <div class="contact-content">
+                <form class="contact-form">
+                    <div class="form-group">
+                        <label for="name">Full Name *</label>
+                        <input type="text" id="name" name="name" placeholder="Enter your name" required>
+                    </div>
+
+                    <div class="form-group">
+                    <label for="contact">Contact Number *</label>
+                        <input type="tel" id="contact" name="contact" placeholder="Enter your number" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Prefer to Meet:</label>
+                        <div class="radio-group">
+                            <label class="radio-label">
+                                <input type="radio" name="meeting" value="offline"> Offline
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="meeting" value="online"> Online
+                            </label>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="submit-btn">Send Message</button>
+                </form>
+
+                <div class="contact-info">
+                    <h3>Contact Information</h3>
+                    <p><strong>Mobile:</strong> 970****436</p>
+                    <p><strong>WhatsApp:</strong> 970****436</p>
+                    <p><strong>Email:</strong> him*****01@gmail.com</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Gallery/Additional Image -->
+        <section class="section gallery-section">
+            <h2 class="section-title">Gallery</h2>
+            <div class="gallery-container">
+                <img src="D:\First html code\IMG_20240727_184546.jpg" alt="Nature" class="gallery-image">
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Himanshu Kumar. All rights reserved.</p>
+            <p class="footer-tagline">Crafted with passion for web development.</p>
+        </div>
+    </footer>
+</body>
+</html>
