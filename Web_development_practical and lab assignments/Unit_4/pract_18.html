@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM Child Node Manipulation</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 800px; margin: 50px auto; padding: 20px; }
+        .container { border: 2px solid #333; padding: 20px; margin: 20px 0; }
+        button { margin: 5px; padding: 10px 15px; background: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer; }
+        button:hover { background: #0056b3; }
+        ul { list-style: none; padding: 0; }
+        li { padding: 10px; margin: 5px 0; background: #f8f9fa; border-radius: 3px; }
+        .log { background: #e9ecef; padding: 15px; border-radius: 5px; margin-top: 20px; font-family: monospace; white-space: pre-wrap; }
+    </style>
+</head>
+<body>
+    <h1>JavaScript DOM: Append, Remove, Modify Child Nodes</h1>
+    
+    <div class="container">
+        <h3>Demo List</h3>
+        <ul id="demoList">
+            <li id="item1">Item 1</li>
+            <li id="item2">Item 2</li>
+            <li id="item3">Item 3</li>
+        </ul>
+        
+        <div style="margin-top: 20px;">
+            <button onclick="appendChild()">Append New Item</button>
+            <button onclick="removeChild()">Remove First Item</button>
+            <button onclick="replaceChild()">Replace Item 2</button>
+            <button onclick="clearAll()">Clear All Items</button>
+            <button onclick="modifyContent()">Modify All Text</button>
+        </div>
+    </div>
+
+    <div class="log" id="log"></div>
+
+    <script>
+        const list = document.getElementById('demoList');
+        const log = document.getElementById('log');
+
+        function logAction(message) {
+            log.textContent += `${new Date().toLocaleTimeString()}: ${message}\n`;
+            log.scrollTop = log.scrollHeight;
+        }
+
+        // APPEND CHILD
+        function appendChild() {
+            const newItem = document.createElement('li');
+            newItem.id = 'newItem' + Date.now();
+            newItem.textContent = `New Item ${list.children.length + 1}`;
+            newItem.style.background = '#d4edda';
+            
+            list.appendChild(newItem);
+            logAction(` Appended: "${newItem.textContent}" as last child`);
+        }
+
+        // REMOVE CHILD
+        function removeChild() {
+            if (list.firstElementChild) {
+                const removed = list.firstElementChild;
+                list.removeChild(removed);
+                logAction(` Removed: "${removed.textContent}" (first child)`);
+            } else {
+                logAction(' No children to remove');
+            }
+        }
+
+        // REPLACE CHILD
+        function replaceChild() {
+            const item2 = document.getElementById('item2');
+            if (item2 && item2.parentNode === list) {
+                const newItem = document.createElement('li');
+                newItem.id = 'replacedItem';
+                newItem.textContent = ' REPLACED Item 2';
+                newItem.style.background = '#fff3cd';
+                newItem.style.fontWeight = 'bold';
+                
+                list.replaceChild(newItem, item2);
+                logAction(` Replaced "Item 2" with "${newItem.textContent}"`);
+            } else {
+                logAction(' Item 2 not found');
+            }
+        }
+
+        // CLEAR ALL CHILDREN
+        function clearAll() {
+            while (list.firstChild) {
+                list.removeChild(list.firstChild);
+            }
+            logAction(' Cleared all child nodes');
+        }
+
+        // MODIFY EXISTING CHILDREN
+        function modifyContent() {
+            const children = list.childNodes;
+            let modifiedCount = 0;
+            
+            for (let i = 0; i < children.length; i++) {
+                if (children[i].nodeType === Node.ELEMENT_NODE) {
+                    children[i].textContent += '  Modified';
+                    children[i].style.background = '#cce5ff';
+                    modifiedCount++;
+                }
+            }
+            logAction(` Modified ${modifiedCount} element nodes`);
+        }
+
+        // Bonus: Modern methods demo (run in console)
+        logAction(' Console bonus: list.append("Direct text", document.createElement("li"))');
+        logAction(' Console bonus: list.replaceChildren(...newItemsArray)');
+        logAction('='.repeat(50));
+    </script>
+</body>
+</html>

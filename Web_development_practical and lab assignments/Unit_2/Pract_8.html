@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Use of different CSS Selectors (class , id , descendent, group, universal )</title>
+    </head>  
+            <style>
+                body{
+                    background-color: cadetblue;
+                    font-family: 'Times New Roman', Times, serif;
+                    font-style: italic;                
+                   }
+            #heading{
+                text-align: center;
+                background-color: #BBACC1;
+                height: 50%;
+                width: 50%;
+                position: relative;
+                border-radius: 10px;              
+            }
+            .detail{
+                background-color:#F1DEDE;
+                text-align: center;               
+            }
+             div h3 {
+                background-color: #909580; 
+                text-align: center;
+            }
+            #syn{
+                background-color: #80727B;
+                text-align:center;
+            }
+            div{ 
+                margin: auto;
+            } 
+            .gpdetail{
+                background-color:#F1DEDE;
+                text-align: center;
+            } 
+            #group{
+                text-align: center;
+                background-color: #BBACC1;
+                height: 50%;
+                width: 50%;
+                position: relative;
+                border-radius: 10px;
+            }  
+            #last{
+                background-color: chartreuse; 
+                text-align: center;
+                width: 50%;
+                height: 50%;
+                border-radius: 20px; 
+                font-size: medium;           
+              }    
+            </style>
+
+    <body>
+        <div id="heading">
+            <h2>class selector </h2>
+        </div>
+        <p id="syn">Syntax :  .classname </p>
+        <div class="detail">
+            <p>Class selectors target elements with a specific class attribute and are denoted by a period (.) followed by the class name.<br>
+             They're reusable and can be applied to multiple elements on the same page.
+            </p>
+        </div>
+        <hr>
+        <div id="heading">
+            <h2> id selector </h2>
+        </div>   
+        <p id="syn">Syntax : #idname </p>  
+        <div class="detail">
+            <p>ID selectors target a single, unique element using the hash (#) symbol followed by the ID name.<br>
+             Each ID must be unique within a page.
+            </p>
+        </div>
+          <hr>
+        <div id="group">
+            <h2>group selector </h2>
+        </div>    
+        <p id="syn"> Syntax : selector1,selector2,selector3 {
+            properties value...
+        } 
+        </p> 
+        <div class="gpdetail">
+            <p>Group selectors allow you to apply the same styles to multiple different selectors by separating them with commas.<br>
+             This reduces code duplication and improves maintainability.
+    ​      </p>
+        </div>
+         <hr>
+         <div id="group">
+            <h3>universal selector </h3>
+        </div>
+         <p id="syn"> Syntax :  * {
+                             property: value;
+                         } 
+         </p>
+         <div class="gpdetail">
+            <p>Universal selectors target all elements on a page or all elements within a specified parent, using the asterisk (*) symbol.<br>
+             They're commonly used for CSS resets and global styling
+            </p>
+        </div>
+        <hr>
+        <div id="group">
+            <h3>descendant selector</h3>
+        </div>
+        <p id="syn">Syntax : ancestor descendant {
+                     property: value;
+                   }
+                </p>
+        <div class="gpdetail">
+            <p>
+                Descendant selectors target elements that are nested inside other elements, using a space character to separate the ancestor and descendant.<br>
+                 They select elements at any nesting level, not just direct children
+            </p>
+        </div> 
+        <hr>
+        <div id="last" >
+            Thanks to our Mentor : Akshay Sir
+        <div>
+    </body>
+</html>

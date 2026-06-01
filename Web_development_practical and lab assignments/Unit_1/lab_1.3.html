@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>function of image tag</title>
+    </head>
+    ><body>
+        <div>
+            <p>
+                <pre>
+                    The HTML image Tag: Function and Key Attributes
+The image  tag in HTML is used to embed images into web pages.
+ It is a self-closing (empty) tag, meaning it does not require a closing tag and does not contain any content between opening and closing tags. 
+ The browser fetches and displays the image from the specified source rather than directly embedding the image file into the document.​
+
+Primary Function
+The   image element allows developers to integrate visual content into web pages, making them more attractive, descriptive, and engaging for users.
+ Images displayed through this tag can come from local files on your server or from external URLs hosted elsewhere on the internet.​
+
+Essential Attributes and Their Importance
+1. The src Attribute
+The src (source) attribute is the most critical attribute for the image tag.
+ It specifies the path or URL to the image file that should be displayed.​
+
+Importance:
+*Mandatory for functionality: Without the src attribute, the browser cannot locate or display the image, rendering the tag non-functional​
+*Accepts multiple path types: It can use either a relative path (for locally hosted images) or an absolute URL (for images hosted online)​
+*Determines image retrieval: When a page loads, the browser uses this attribute to fetch the image from the web server and render it on the page​
+
+Example:
+<!--<img src="images/photo.jpg" alt="A scenic mountain view">--->
+
+2. The alt Attribute
+The alt (alternative text) attribute provides a text-based description of the image.​
+
+Importance:
+
+Accessibility:
+*Screen reader support: The alt text is read aloud by screen readers, enabling visually impaired users to understand the image content​
+*Inclusive design: It ensures that users with visual impairments or those using assistive technologies can access the same information as sighted users​
+
+Fallback display:
+*Network failures: When images fail to load due to slow connections, broken links, or incorrect file paths, browsers display the alt text instead​
+*User awareness: This informs users about what the image represents even when it cannot be viewed​
+
+Search Engine Optimization (SEO):
+*Content indexing: Search engines like Google use alt text to understand image content and context, which helps with rankings​
+*Image search results: Descriptive alt text improves the likelihood of images appearing in relevant image search results​
+
+Example:
+<!--<img src="logo.png" alt="Company logo featuring a blue mountain">--->
+
+Best practices for alt text:​
+Describe the image content accurately and concisely
+Include important text that appears in the image
+Use empty alt text (alt="") for purely decorative images
+Avoid redundant phrases like "image of" or "picture of"
+
+Additional Useful Attributes
+While src and alt are the two required attributes, the iamge tag supports several other useful attributes:
+width and height: Specify image dimensions in pixels to control size and maintain aspect ratio​
+title: Provides additional context displayed as a tooltip when users hover over the image​
+loading: Controls when the image loads (e.g., lazy loading for performance optimization)​
+
+Example with multiple attributes:
+<!--<img src="photo.jpg" 
+     alt="Sunset over the ocean" 
+     width="600" 
+     height="400"
+     title="Beautiful sunset photograph">--->
+The image tag is fundamental to modern web design, and properly implementing its attributes—especially src and alt—ensures both functional display and accessible, SEO-friendly web content.​
+
+                </pre>
+            </p>
+        </div>
+        <div>
+            <img src="https://www.livehindustan.com/lh-img/smart/img/2025/10/25/1200x900/chhath_puja_wishes_in_hindi_1761360109128_1761360109323.jpeg" alt="HAPPY CHHATH PUJA" height="250px" width="350px"  title="HAPPY CHHATH PUJA">
+        </div>
+        
+    </body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Simple Form Validation</title>
+</head>
+<body>
+  <form id="myForm" onsubmit="return validateForm()">
+    <label>
+      Name:
+      <input type="text" id="name" oninput="checkName()">
+    </label>
+    <br><br>
+
+    <label>
+      Email:
+      <input type="email" id="email" oninput="checkEmail()">
+    </label>
+    <br><br>
+
+    <button type="submit">Submit</button>
+  </form>
+
+  <script>
+    function checkName() {
+      const name = document.getElementById("name").value.trim();
+      if (name.length === 0) {
+        // simple live feedback
+        console.log("Name is required");
+      }
+    }
+
+    function checkEmail() {
+      const email = document.getElementById("email").value.trim();
+      if (email.length === 0) {
+        console.log("Email is required");
+      }
+    }
+
+    function validateForm() {
+      const name = document.getElementById("name").value.trim();
+      const email = document.getElementById("email").value.trim();
+
+      if (name === "") {
+        alert("Please enter your name");
+        return false; // cancel submit
+      }
+
+      if (email === "") {
+        alert("Please enter your email");
+        return false; // cancel submit
+      }
+
+      alert("Form submitted successfully!");
+      return true; // allow submit
+    }
+  </script>
+</body>
+</html>

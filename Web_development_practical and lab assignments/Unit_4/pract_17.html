@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head><title>Interactive Demo</title></head>
+<body>
+    <button id="interactiveBtn">Interact</button>
+    <p id="output">Waiting...</p>
+    <script>
+        const btn = document.getElementById('interactiveBtn');
+        const output = document.getElementById('output');
+        
+        let clickHandler = function() {  // Named for removal
+            output.textContent = 'Clicked!';
+            btn.removeEventListener('click', clickHandler);  // Self-remove after once
+        };
+        
+        let hoverHandler = () => output.textContent = 'Hovering...';
+        
+        btn.addEventListener('click', clickHandler);
+        btn.addEventListener('mouseenter', hoverHandler);
+        btn.addEventListener('mouseleave', () => output.textContent = 'Left!');
+        
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'r') {  // 'r' to reset
+                output.textContent = 'Reset!';
+                btn.addEventListener('click', clickHandler);  // Re-add
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>purpose of anchor tag</title>
+    </head>
+    <body>
+        <div>
+            <p>
+                <pre>
+                    Purpose of the <a> Tag in HTML
+    The <a> tag (anchor tag) in HTML is used to create hyperlinks that allow users to navigate between web pages, jump to specific sections within a page, link to external resources, or trigger actions like opening email clients. 
+    It is one of the fundamental building blocks of the web, enabling the interconnected structure of hypertext documents.
+    The <a> tag by itself is just a placeholder; it becomes functional when paired with attributes, most importantly the href (hypertext reference) attribute, which specifies the link destination.​
+
+Syntax for Creating a Hyperlink
+The basic syntax for creating a hyperlink using the <a> tag is:
+
+<!--<a href="URL" target="_blank" title="Link Title">Anchor Text</a>--->
+Explanation of Each Part
+1. <a> - Opening Tag
+This marks the beginning of the anchor element. It tells the browser that a hyperlink is being defined.​
+
+2. href="URL" - Hypertext Reference Attribute
+The most important attribute of the <a> tag​
+Specifies the destination of the link—where the user will be directed when they click​
+
+The URL can be:
+Absolute URL: Full web address including domain (e.g., href="https://www.example.com")
+Relative URL: Path to a page within the same website (e.g., href="/about.html")
+Anchor link: Link to a specific section on the same page using an ID (e.g., href="#contact")
+Email address: Opens email client (e.g., href="mailto:example@email.com")
+Phone number: Initiates a call (e.g., href="tel:+910000000")​
+
+3. target="_blank" - Target Attribute (Optional)
+Specifies where to open the linked document. Common values include:​
+
+_blank: Opens the link in a new window or tab​
+_self: Opens in the same window/tab (default behavior)​
+_parent: Opens in the parent frame​
+_top: Opens in the full body of the window​
+
+4. title="Link Title" - Title Attribute (Optional)
+Provides additional information about the link that appears as a tooltip when users hover over it. 
+This can improve user experience and accessibility, though it should be used carefully.​
+
+5. Anchor Text
+The visible, clickable text between the opening and closing tags. 
+This is what users see and click on.
+ Search engines like Google use anchor text to understand the content and context of the linked page.​
+
+6. </a> - Closing Tag
+Marks the end of the anchor element.
+                </pre>
+            </p>
+        </div>
+        <div>
+            <a href="https://www.google.com/" target="_self">GOOGLE</a>
+        </div>
+    </body>
+</html>
