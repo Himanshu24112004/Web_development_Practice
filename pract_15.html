@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>DOM Manipulation Demo</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+
+    .info-box {
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <h1 id="title">Welcome!</h1>
+
+  <p id="message">Click the button to change this text.</p>
+
+  <input type="text" id="nameInput" placeholder="Enter your name" />
+
+  <button id="changeBtn">Change Text</button>
+
+  <div class="info-box">
+    <p class="info-text">This is some extra info.</p>
+  </div>
+
+  <script>
+    // ----- getElementById() examples -----
+    const title = document.getElementById("title");        // <h1>
+    const message = document.getElementById("message");    // <p>
+    const nameInput = document.getElementById("nameInput");
+    const changeBtn = document.getElementById("changeBtn");
+
+    // Click event on button
+    changeBtn.addEventListener("click", function () {
+      const name = nameInput.value.trim();
+
+      // Use innerHTML to change content
+      if (name) {
+        message.innerHTML = "Hello, <strong>" + name + "</strong>!";
+      } else {
+        message.innerHTML = "Please enter a name first.";
+      }
+    });
+
+    // ----- querySelector() examples -----
+    const infoBox = document.querySelector(".info-box");   // by class
+    const infoText = document.querySelector(".info-text"); // by class
+    const titleAgain = document.querySelector("#title");   // same <h1>, by id selector
+
+    // Change styles and content
+    infoBox.style.border = "2px solid #333";
+    infoBox.style.padding = "10px";
+
+    infoText.innerHTML = "This text was changed using <em>querySelector()</em>.";
+    titleAgain.style.color = "blue";
+  </script>
+</body>
+</html>

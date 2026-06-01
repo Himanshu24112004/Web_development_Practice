@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Responsive Webpage Example</title>
+  <style>
+    /* Color variables for easy management */
+    :root {
+      --primary-bg: #f8fafc;
+      --card-bg: #e6e6ff;
+      --accent: #6258e4;
+      --nav-bg: #ece0fa;
+      --nav-item-bg: #b3a1e6;
+      --nav-item-hover: #9f8dd3;
+      --text: #22223b;
+      --heading: #6258e4;
+      --shadow: 0 0 1rem rgba(98,88,228,0.06);
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background: var(--primary-bg);
+      color: var(--text);
+    }
+    .container {
+      width: 95%;
+      max-width: 40rem;
+      margin: 1rem auto;
+      background: #fff;
+      padding: 1rem;
+      border-radius: 0.5rem;
+      box-shadow: var(--shadow);
+    }
+    h1 {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      color: var(--heading);
+    }
+    nav ul {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      padding: 0;
+      list-style: none;
+      margin: 1rem 0;
+      background: var(--nav-bg);
+      border-radius: 0.5rem;
+    }
+    nav li {
+      padding: 0.5rem;
+      background: var(--nav-item-bg);
+      border-radius: 0.25rem;
+      color: var(--accent);
+      transition: background 0.2s;
+    }
+    nav li:hover {
+      background: var(--nav-item-hover);
+      color: #fff;
+    }
+    .grid {
+      display: block;
+    }
+    .grid-item {
+      background: var(--card-bg);
+      margin-bottom: 1rem;
+      padding: 1rem;
+      border-radius: 0.25rem;
+      box-shadow: 0 0 0.5rem rgba(98,88,228,0.05);
+      color: var(--text);
+    }
+
+    /* Tablet and up */
+    @media (min-width: 600px) {
+      h1 {
+        font-size: 2rem;
+      }
+      nav ul {
+        flex-direction: row;
+        gap: 1rem;
+      }
+      .grid {
+        display: flex;
+        gap: 1rem;
+      }
+      .grid-item {
+        flex: 1;
+        margin-bottom: 0;
+      }
+    }
+
+    /* Desktop and up */
+    @media (min-width: 900px) {
+      .container {
+        max-width: 70rem;
+        padding: 2rem;
+        background: var(--primary-bg);
+      }
+      h1 {
+        font-size: 2.5rem;
+      }
+      .grid {
+        gap: 2rem;
+      }
+      nav li {
+        padding: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Responsive Webpage</h1>
+    <nav>
+      <ul>
+        <li>Home</li>
+        <li>Projects</li>
+        <li>Contact</li>
+      </ul>
+    </nav>
+    <div class="grid">
+      <div class="grid-item">Content 1: About Mobile-First Design</div>
+      <div class="grid-item">Content 2: Flexible CSS Units</div>
+      <div class="grid-item">Content 3: Media Queries for Responsiveness</div>
+    </div>
+  </div>
+</body>
+</html>

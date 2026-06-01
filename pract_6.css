@@ -1,0 +1,15 @@
+button:hover {
+  background: linear-gradient(90deg, #06b6d4, #3b82f6);
+  box-shadow: 0 8px 32px rgba(39, 164, 255, 0.15);
+}
+.app-footer {
+  margin-top: 32px;
+  font-size: 1rem;
+  text-align: center;
+  color: #2566d4;
+  letter-spacing: 1px;
+  background: #e8f6ff;
+  padding: 8px 0;
+  border-radius: 7px;
+  box-shadow: 0 2px 7px #63a4ff2e;
+}

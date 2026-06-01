@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Responsive Two-Column Layout</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    .container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      padding: 20px;
+    }
+
+    .sidebar {
+      flex: 1;
+      min-width: 250px;
+      background-color: #f0f0f0;
+      padding: 20px;
+      border-radius: 5px;
+    }
+
+    .main-content {
+      flex: 2;
+      min-width: 300px;
+      background-color: #ffffff;
+      padding: 20px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        flex-direction: column;
+      }
+
+      .sidebar {
+        flex: 1;
+      }
+
+      .main-content {
+        flex: 1;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="sidebar">
+      <h2>Sidebar</h2>
+      <p>This is the sidebar with supplementary content.</p>
+      <ul>
+        <li>Link 1</li>
+        <li>Link 2</li>
+        <li>Link 3</li>
+      </ul>
+    </div>
+
+    <div class="main-content">
+      <h2>Main Content</h2>
+      <p>This is the main content area. It takes up more space than the sidebar using flex: 2.</p>
+      <p>The layout is responsive. On smaller screens, the columns stack vertically using the media query.</p>
+    </div>
+  </div>
+</body>
+</html>

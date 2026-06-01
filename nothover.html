@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>NOT HOVER </title>
+    <style>
+        body{
+            background-color: rgb(63, 61, 61); 
+        }
+        .conatiner{
+            display: inline;
+            height: 600px;
+            width: 500px;
+        }
+        img{
+            width: 400px;
+            height: 200px;
+            border-radius: 10px;
+            -webkit-box-reflect: below 2.5px 
+             linear-gradient(transparent, transparent,rgba(3,3,3,0.2));
+             border: 3px ridge #a5b1c2;
+             margin: 5px;
+        }
+        .card{
+            transition: 0.5s ease;
+            cursor: pointer;
+        }
+        .conatiner:hover > :not(:hover){
+         opacity: 0.3;
+        }
+        .card:hover{
+            transform: scale(1.1);
+            filter: grayscale(0%);
+
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="card"><img src="img1.jpg" alt=""></div>
+         <div class="card"><img src="img2.jpg" alt=""></div>
+          <div class="card"><img src="img3.jpg" alt=""></div>
+           <div class="card"><img src="img4.jpg" alt=""></div>
+    </div>
+    
+</body>
+</html>

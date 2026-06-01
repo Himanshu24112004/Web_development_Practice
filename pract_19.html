@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Canvas Shapes Drawing</title>
+</head>
+<body>
+    <canvas id="myCanvas" width="400" height="300" style="border:1px solid #ccc;"></canvas>
+    <script>
+        const canvas = document.getElementById('myCanvas');
+        const ctx = canvas.getContext('2d');
+
+        // Red filled rectangle
+        ctx.fillStyle = 'red';
+        ctx.fillRect(20, 20, 100, 80);[web:1][page:2]
+
+        // Blue filled circle
+        ctx.beginPath();
+        ctx.fillStyle = 'blue';
+        ctx.arc(220, 60, 40, 0, 2 * Math.PI);
+        ctx.fill();[web:1][page:1]
+
+        // Green filled triangle
+        ctx.beginPath();
+        ctx.fillStyle = 'green';
+        ctx.moveTo(50, 150);
+        ctx.lineTo(120, 150);
+        ctx.lineTo(85, 100);
+        ctx.fill();[web:1][page:1]
+
+        // Optional: Add stroke outlines
+        ctx.strokeStyle = 'black';
+        ctx.lineWidth = 2;
+        ctx.strokeRect(20, 20, 100, 80);
+        ctx.beginPath();
+        ctx.arc(220, 60, 40, 0, 2 * Math.PI);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(50, 150);
+        ctx.lineTo(120, 150);
+        ctx.lineTo(85, 100);
+        ctx.closePath();
+        ctx.stroke();[page:2]
+    </script>
+</body>
+</html>

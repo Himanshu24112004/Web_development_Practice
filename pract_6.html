@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- Internal CSS for background, layout, and main card styling -->
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Roboto:wght@400&display=swap');
+    body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(135deg, #63a4ff 0%, #83eaf1 100%);
+      font-family: 'Roboto', sans-serif;
+    }
+    .container {
+      max-width: 600px;
+      margin: 60px auto;
+      background: #fff;
+      border-radius: 18px;
+      box-shadow: 0 6px 30px rgba(0, 0, 0, 0.16);
+      padding: 30px;
+    }
+    h1 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 2.8rem;
+      color: #2566d4;
+      text-shadow: 2px 2px 9px #b3c0ff;
+      letter-spacing: 2px;
+      text-align: center;
+      margin-bottom: 10px;
+      transition: color 0.3s;
+    }
+    h1:hover {
+      color: #004aad;
+    }
+    .desc {
+      font-size: 1.2rem;
+      color: #374151;
+      margin: 12px 0 20px 0;
+      text-align: center;
+    }
+    .features {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+    .feature {
+      background: #e8f6ff;
+      padding: 10px 24px;
+      border-radius: 12px;
+      font-weight: 500;
+      color: #0076d9;
+      box-shadow: 0 0 12px rgba(38, 102, 212, 0.10);
+      transition: background 0.4s;
+      cursor: pointer;
+    }
+    .feature:hover {
+      background: #cde8ff;
+    }
+    /* External CSS will add extra style for the button and footer */
+  </style>
+  <link rel="stylesheet" href="pract_6.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Mixing CSS Magic!</h1>
+    <p class="desc">This demo shows inline, internal, and external CSS working together to create an impressive web card.</p>
+    <div class="features">
+      <div class="feature">Internal Style</div>
+      <div class="feature" style="background: #ffedd5; color: #f97316;">Inline Style</div> <!-- Inline overrides internal! -->
+      <div class="feature">External Style</div>
+    </div>
+    <button style="background: linear-gradient(90deg, #3b82f6, #06b6d4); color: #fff; font-size: 1.1rem; border: none; padding: 14px 32px; border-radius: 12px; box-shadow: 0 4px 16px rgba(6,182,212,0.2); cursor:pointer; transition: background 0.5s;">Click Me</button>
+    <p style="text-align: center; margin-top: 22px; color: #888; font-style: italic;">(This button uses inline style – try hovering!)</p>
+    <footer class="app-footer">Created with all CSS methods for maximum effect</footer>
+  </div>
+</body>
+</html>

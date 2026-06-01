@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS Toggle Demo - Show/Hide + Class Toggle</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            color: #333;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background: linear-gradient(45deg, #ff6b6b, #feca57);
+            padding: 30px;
+            text-align: center;
+            color: white;
+        }
+        .controls {
+            padding: 30px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            border-bottom: 1px solid #eee;
+        }
+        button {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            color: white;
+        }
+        .toggle-btn { background: #4ecdc4; }
+        .toggle-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 20px rgba(78,205,196,0.3); }
+        .content-section {
+            padding: 40px;
+            transition: all 0.4s ease;
+        }
+        .demo-box {
+            margin: 20px 0;
+            padding: 30px;
+            border-radius: 15px;
+            min-height: 100px;
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
+            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+        /* Hide class for display: none */
+        .hidden { display: none !important; }
+        /* Theme classes for toggling */
+        .normal { background: #f8f9fa; border: 3px solid #dee2e6; color: #495057; }
+        .success { background: #d4edda; border: 3px solid #c3e6cb; color: #155724; transform: scale(1.05); }
+        .warning { background: #fff3cd; border: 3px solid #ffeaa7; color: #856404; box-shadow: 0 0 20px rgba(255,193,7,0.3); }
+        .danger { background: #f8d7da; border: 3px solid #f5c6cb; color: #721c24; animation: pulse 1s infinite; }
+        @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.08); } }
+        .status {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 10px;
+            font-weight: bold;
+            text-align: center;
+        }
+        .status.active { background: #d4edda; color: #155724; }
+        .status.inactive { background: #f8d7da; color: #721c24; }
+        h2 { margin-bottom: 20px; color: #333; }
+        .demo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1> JavaScript Toggle Demo</h1>
+            <p>Show/Hide Elements + Dynamic CSS Class Toggle</p>
+        </div>
+
+        <div class="controls">
+            <button class="toggle-btn" onclick="toggleVisibility('box1')">Toggle Box 1</button>
+            <button class="toggle-btn" onclick="toggleVisibility('box2')">Toggle Box 2</button>
+            <button class="toggle-btn" onclick="cycleTheme('demoBox')">Cycle Theme</button>
+            <button class="toggle-btn" onclick="toggleAll()">Toggle All Boxes</button>
+            <button class="toggle-btn" onclick="resetAll()">Reset Demo</button>
+        </div>
+
+        <div class="content-section">
+            <h2> Individual Show/Hide (display: none/block)</h2>
+            <div id="box1" class="demo-box normal hidden">
+                Box 1: Hidden by default! Click to show/hide.
+            </div>
+            <div id="box2" class="demo-box normal">
+                Box 2: Visible by default! Click to hide/show.
+            </div>
+
+            <h2> Dynamic Class Toggle (Multiple Styles)</h2>
+            <div class="demo-grid">
+                <div id="demoBox" class="demo-box normal">
+                    Click "Cycle Theme" to toggle through: Normal → Success → Warning → Danger → Normal
+                </div>
+            </div>
+
+            <div id="status" class="status inactive">
+                Status: Click buttons to see magic happen! 
+            </div>
+        </div>
+    </div>
+
+    <script>
+        //  CORE FUNCTIONS - Show/Hide using display property
+        function toggleVisibility(elementId) {
+            const element = document.getElementById(elementId);
+            if (element.style.display === 'none') {
+                element.style.display = 'block';
+            } else {
+                element.style.display = 'none';
+            }
+            updateStatus();
+        }
+
+        //  CLASS TOGGLE - Cycles through multiple CSS classes
+        function cycleTheme(elementId) {
+            const element = document.getElementById(elementId);
+            const currentClass = element.className.split(' ')[1] || 'normal'; // Get current theme class
+            const themes = ['normal', 'success', 'warning', 'danger'];
+            const currentIndex = themes.indexOf(currentClass);
+            const nextIndex = (currentIndex + 1) % themes.length;
+            const nextTheme = themes[nextIndex];
+            
+            // Remove all theme classes first
+            themes.forEach(theme => element.classList.remove(theme));
+            // Add the next theme
+            element.classList.add(nextTheme);
+            updateStatus(`Theme changed to: ${nextTheme.toUpperCase()}`);
+        }
+
+        //  BULK OPERATIONS - Toggle multiple elements
+        function toggleAll() {
+            const boxes = document.querySelectorAll('.demo-box');
+            boxes.forEach(box => {
+                if (box.style.display === 'none') {
+                    box.style.display = 'block';
+                } else {
+                    box.style.display = 'none';
+                }
+            });
+            updateStatus('All boxes toggled!');
+        }
+
+        //  RESET - Return to initial state
+        function resetAll() {
+            document.getElementById('box1').style.display = 'none';
+            document.getElementById('box2').style.display = 'block';
+            document.querySelectorAll('.demo-box').forEach(box => {
+                box.classList.remove('success', 'warning', 'danger');
+                box.classList.add('normal');
+            });
+            document.getElementById('status').textContent = 'Status: Demo reset to initial state! ';
+            document.getElementById('status').className = 'status inactive';
+        }
+
+        //  STATUS UPDATER - Live feedback
+        function updateStatus(message = '') {
+            const statusEl = document.getElementById('status');
+            statusEl.textContent = message || 'Status: Elements toggled successfully! ';
+            statusEl.className = 'status active';
+        }
+
+        //  BONUS: Auto-demo after 2 seconds (remove if not needed)
+        setTimeout(() => {
+            toggleVisibility('box1');
+            setTimeout(() => cycleTheme('demoBox'), 500);
+        }, 2000);
+    </script>
+</body>
+</html>

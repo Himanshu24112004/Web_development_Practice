@@ -1,0 +1,53 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>DOM Manipulation Demo</title>
+  <style>
+    .highlight { color: purple; font-weight: bold; }
+  </style>
+</head>
+<body>
+  <h1 id="title">Original Title</h1>
+  <p class="message">First message</p>
+  <p class="message">Second message</p>
+
+  <button onclick="changeWithGetElementById()">Change Title</button>
+  <button onclick="changeWithQuerySelector()">Change First Message</button>
+  <button onclick="addNewContent()">Add New Content</button>
+
+  <div id="output"></div>
+
+  <script>
+    // 1. Use getElementById()
+    function changeWithGetElementById() {
+      const titleEl = document.getElementById("title");   // select by id
+      titleEl.innerHTML = "Title changed using <span class='highlight'>getElementById()</span>";
+    }
+
+    // 2. Use querySelector()
+    function changeWithQuerySelector() {
+      const firstMsg = document.querySelector(".message"); // first element with class "message"
+      firstMsg.innerHTML = "Updated with <span class='highlight'>querySelector()</span>";
+    }
+
+    // 3. Use innerHTML to inject new HTML
+    function addNewContent() {
+      const out = document.getElementById("output");
+      out.innerHTML = `
+        <h2>New section</h2>
+        <ul>
+          <li>Item added using innerHTML</li>
+          <li>Another dynamic item</li>
+        </ul>
+      `;
+    }
+  </script>
+</body>
+</html>
+
+
+
+ 
+

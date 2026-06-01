@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Digital Clock & Calendar</title>
+  <style>
+    * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.container {
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  max-width: 800px;
+  width: 100%;
+  padding: 40px;
+  overflow: hidden;
+}
+
+/* CLOCK SECTION */
+.clock-section {
+  text-align: center;
+  margin-bottom: 40px;
+  padding-bottom: 40px;
+  border-bottom: 2px solid #eee;
+}
+
+.clock {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 15px;
+  padding: 30px;
+  color: white;
+}
+
+.time-display {
+  font-size: 60px;
+  font-weight: bold;
+  font-family: 'Courier New', monospace;
+  margin-bottom: 15px;
+  letter-spacing: 3px;
+}
+
+.date-display {
+  font-size: 20px;
+  margin-bottom: 10px;
+  opacity: 0.9;
+}
+
+.timezone-display {
+  font-size: 14px;
+  opacity: 0.7;
+}
+
+/* CALENDAR SECTION */
+.calendar-section {
+  margin-bottom: 30px;
+}
+
+.calendar {
+  background: #f8f9fa;
+  border-radius: 15px;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.calendar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  gap: 15px;
+}
+
+.calendar-header h2 {
+  font-size: 24px;
+  color: #333;
+  flex: 1;
+  text-align: center;
+}
+
+.nav-btn {
+  background: #667eea;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background 0.3s ease;
+}
+
+.nav-btn:hover {
+  background: #764ba2;
+}
+
+.weekdays {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.weekday {
+  text-align: center;
+  font-weight: bold;
+  color: #667eea;
+  padding: 10px;
+}
+
+.calendar-dates {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 10px;
+}
+
+.date-btn {
+  padding: 15px;
+  border: 2px solid #ddd;
+  background: white;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  color: #333;
+}
+
+.date-btn:hover {
+  border-color: #667eea;
+  background: #f0f3ff;
+  transform: scale(1.05);
+}
+
+.date-btn.other-month {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.date-btn.today {
+  background: #667eea;
+  color: white;
+  border-color: #667eea;
+  font-weight: bold;
+}
+
+.date-btn.selected {
+  background: #764ba2;
+  color: white;
+  border-color: #764ba2;
+}
+
+.selected-date-display {
+  background: #f0f3ff;
+  padding: 15px;
+  border-radius: 8px;
+  text-align: center;
+  color: #667eea;
+  font-weight: 600;
+}
+
+/* CONTROLS SECTION */
+.controls-section {
+  background: #f8f9fa;
+  padding: 20px;
+  border-radius: 15px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.controls-section label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: #333;
+  font-size: 14px;
+}
+
+.controls-section select {
+  width: 100%;
+  padding: 10px;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: border-color 0.3s ease;
+}
+
+.controls-section select:focus {
+  outline: none;
+  border-color: #667eea;
+}
+
+/* RESPONSIVE DESIGN */
+@media (max-width: 600px) {
+  .container {
+    padding: 20px;
+  }
+
+  .time-display {
+    font-size: 40px;
+  }
+
+  .date-display {
+    font-size: 16px;
+  }
+
+  .calendar-header h2 {
+    font-size: 18px;
+  }
+
+  .calendar-dates {
+    gap: 5px;
+  }
+
+  .date-btn {
+    padding: 10px 5px;
+    font-size: 12px;
+  }
+
+  .controls-section {
+    grid-template-columns: 1fr;
+  }
+}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- CLOCK SECTION -->
+    <section class="clock-section">
+      <div class="clock">
+        <div id="time-display" class="time-display">00:00:00</div>
+        <div id="date-display" class="date-display">Loading date...</div>
+        <div id="timezone-display" class="timezone-display">Timezone: Asia/Kolkata</div>
+      </div>
+    </section>
+
+    <!-- CALENDAR SECTION -->
+    <section class="calendar-section">
+      <div class="calendar">
+        <!-- Calendar Header -->
+        <div class="calendar-header">
+          <button id="prev-month" class="nav-btn">&lt; Prev</button>
+          <h2 id="month-year-display">December 2025</h2>
+          <button id="next-month" class="nav-btn">Next &gt;</button>
+        </div>
+
+        <!-- Weekday Labels -->
+        <div class="weekdays">
+          <div class="weekday">Sun</div>
+          <div class="weekday">Mon</div>
+          <div class="weekday">Tue</div>
+          <div class="weekday">Wed</div>
+          <div class="weekday">Thu</div>
+          <div class="weekday">Fri</div>
+          <div class="weekday">Sat</div>
+        </div>
+
+        <!-- Calendar Dates -->
+        <div id="calendar-dates" class="calendar-dates">
+          <!-- Generated by JavaScript -->
+        </div>
+      </div>
+
+      <!-- Selected Date Display -->
+      <div class="selected-date-display">
+        <p>Selected Date: <span id="selected-date">None</span></p>
+      </div>
+    </section>
+
+    <!-- CONTROLS -->
+    <section class="controls-section">
+      <label for="timezone-select">Select Timezone:</label>
+      <select id="timezone-select">
+        <option value="Asia/Kolkata">Asia/Kolkata (IST)</option>
+        <option value="America/New_York">America/New_York (EST)</option>
+        <option value="Europe/London">Europe/London (GMT)</option>
+        <option value="Asia/Tokyo">Asia/Tokyo (JST)</option>
+      </select>
+
+      <label for="locale-select">Select Language:</label>
+      <select id="locale-select">
+        <option value="en-US">English</option>
+        <option value="hi-IN">Hindi (हिन्दी)</option>
+      </select>
+    </section>
+  </div>
+  <script>
+    // ============================================
+// DIGITAL CLOCK & CALENDAR APPLICATION
+// ============================================
+
+// ===== STATE MANAGEMENT =====
+const state = {
+  currentDate: new Date(),
+  selectedDate: null,
+  timezone: 'Asia/Kolkata',
+  locale: 'en-US',
+  clockInterval: null
+};
+
+// ===== CLOCK FUNCTIONALITY =====
+class ClockManager {
+  constructor() {
+    this.timeDisplay = document.getElementById('time-display');
+    this.dateDisplay = document.getElementById('date-display');
+    this.timezoneDisplay = document.getElementById('timezone-display');
+  }
+
+  start() {
+    this.update();
+    state.clockInterval = setInterval(() => this.update(), 1000);
+  }
+
+  stop() {
+    if (state.clockInterval) {
+      clearInterval(state.clockInterval);
+      state.clockInterval = null;
+    }
+  }
+
+  update() {
+    const now = new Date();
+
+    // Format time in HH:MM:SS (24-hour format)
+    const timeString = new Intl.DateTimeFormat('en-GB', {
+      hour: '2-digit',
+      minute: '2-digit',
+      second: '2-digit',
+      timeZone: state.timezone,
+      hour12: false
+    }).format(now);
+
+    // Format date with locale
+    const dateString = new Intl.DateTimeFormat(state.locale, {
+      weekday: 'long',
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+      timeZone: state.timezone
+    }).format(now);
+
+    // Update display
+    this.timeDisplay.textContent = timeString;
+    this.dateDisplay.textContent = dateString;
+    this.timezoneDisplay.textContent = `Timezone: ${state.timezone}`;
+  }
+}
+
+// ===== CALENDAR FUNCTIONALITY =====
+class CalendarManager {
+  constructor() {
+    this.monthYearDisplay = document.getElementById('month-year-display');
+    this.calendarDatesContainer = document.getElementById('calendar-dates');
+    this.selectedDateDisplay = document.getElementById('selected-date');
+    this.prevBtn = document.getElementById('prev-month');
+    this.nextBtn = document.getElementById('next-month');
+
+    this.setupEventListeners();
+  }
+
+  setupEventListeners() {
+    this.prevBtn.addEventListener('click', () => this.previousMonth());
+    this.nextBtn.addEventListener('click', () => this.nextMonth());
+  }
+
+  previousMonth() {
+    state.currentDate.setMonth(state.currentDate.getMonth() - 1);
+    this.render();
+  }
+
+  nextMonth() {
+    state.currentDate.setMonth(state.currentDate.getMonth() + 1);
+    this.render();
+  }
+
+  // Get first day of month and number of days
+  getMonthInfo(date) {
+    const year = date.getFullYear();
+    const month = date.getMonth();
+
+    const firstDay = new Date(year, month, 1).getDay();
+    const daysInMonth = new Date(year, month + 1, 0).getDate();
+    const daysInPrevMonth = new Date(year, month, 0).getDate();
+
+    return { firstDay, daysInMonth, daysInPrevMonth };
+  }
+
+  render() {
+    const { firstDay, daysInMonth, daysInPrevMonth } = this.getMonthInfo(state.currentDate);
+    const today = new Date();
+    const year = state.currentDate.getFullYear();
+    const month = state.currentDate.getMonth();
+
+    // Update month/year display
+    const monthName = state.currentDate.toLocaleString(state.locale, { month: 'long' });
+    this.monthYearDisplay.textContent = `${monthName} ${year}`;
+
+    // Clear previous calendar
+    this.calendarDatesContainer.innerHTML = '';
+
+    // Add previous month's days (disabled)
+    const prevMonthStartDay = daysInPrevMonth - firstDay + 1;
+    for (let i = prevMonthStartDay; i <= daysInPrevMonth; i++) {
+      const btn = this.createDateButton(i, 'other-month', false);
+      this.calendarDatesContainer.appendChild(btn);
+    }
+
+    // Add current month's days
+    for (let day = 1; day <= daysInMonth; day++) {
+      const date = new Date(year, month, day);
+      const isToday =
+        day === today.getDate() &&
+        month === today.getMonth() &&
+        year === today.getFullYear();
+
+      const btn = this.createDateButton(
+        day,
+        isToday ? 'today' : '',
+        true,
+        date
+      );
+
+      this.calendarDatesContainer.appendChild(btn);
+    }
+
+    // Add next month's days (disabled)
+    const totalCells = this.calendarDatesContainer.children.length;
+    const remainingCells = 42 - totalCells; // 6 weeks * 7 days
+    for (let i = 1; i <= remainingCells; i++) {
+      const btn = this.createDateButton(i, 'other-month', false);
+      this.calendarDatesContainer.appendChild(btn);
+    }
+  }
+
+  createDateButton(day, classNames, isClickable, date = null) {
+    const btn = document.createElement('button');
+    btn.textContent = day;
+    btn.className = `date-btn ${classNames}`;
+
+    if (!isClickable) {
+      btn.disabled = true;
+      return btn;
+    }
+
+    btn.addEventListener('click', () => {
+      // Remove previous selection
+      document.querySelectorAll('.date-btn.selected').forEach(btn => {
+        btn.classList.remove('selected');
+      });
+
+      // Add selection to clicked button
+      btn.classList.add('selected');
+
+      // Update selected date display
+      state.selectedDate = date;
+      const dateString = new Intl.DateTimeFormat(state.locale, {
+        weekday: 'long',
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+      }).format(date);
+
+      this.selectedDateDisplay.textContent = dateString;
+    });
+
+    return btn;
+  }
+}
+
+// ===== EVENT LISTENERS FOR CONTROLS =====
+function setupControls() {
+  const timezoneSelect = document.getElementById('timezone-select');
+  const localeSelect = document.getElementById('locale-select');
+  const clockManager = new ClockManager();
+
+  timezoneSelect.addEventListener('change', (e) => {
+    state.timezone = e.target.value;
+    clockManager.update();
+  });
+
+  localeSelect.addEventListener('change', (e) => {
+    state.locale = e.target.value;
+    clockManager.update();
+    calendar.render();
+  });
+}
+
+// ===== INITIALIZE APPLICATION =====
+window.addEventListener('DOMContentLoaded', () => {
+  const clockManager = new ClockManager();
+  const calendar = new CalendarManager();
+
+  // Start the clock
+  clockManager.start();
+
+  // Render initial calendar
+  calendar.render();
+
+  // Setup control listeners
+  setupControls();
+
+  // Clean up on page unload
+  window.addEventListener('beforeunload', () => {
+    clockManager.stop();
+  });
+});
+
+  </script>
+</body>
+</html>

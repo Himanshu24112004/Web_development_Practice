@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Google Logo</title>
+    <style>
+        body{
+            background-color: black;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .logo{
+            position: relative;
+            width: 200px;
+            height: 200px;
+            border-top: 30px solid #ea4335;
+            border-right: 30px solid #4285f4;
+            border-bottom: 30px solid #34a853;
+            border-left: 30px solid #fbbc05;
+            border-radius: 50%;
+            background-color: black;
+        }
+        .logo::before{
+            content: "";
+            position: absolute;
+            background-color: #4285f4;
+            width: 60px;
+            height: 30px;
+            top: 50%;
+            right: -25px;
+            transform: translateY(-50%);
+        }
+        .logo::after{
+            content: "";
+            position: absolute;
+            width: 0;
+            height: 0;
+            top: -19px;
+            right: -19px;
+            border-top: 100px solid transparent;
+            border-right: 100px solid black;
+        }
+    </style>
+</head>
+<body>
+    <div class="logo"></div>
+</body>
+</html>

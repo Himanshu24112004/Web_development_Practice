@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Show / Hide Demo</title>
+  <style>
+    .hidden {
+      display: none;          /* element is not visible and takes no space */
+    }
+    .box {
+      padding: 10px;
+      background: lightblue;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <button id="toggleBtn">Show / Hide Box</button>
+
+  <div id="myBox" class="box">
+    This box will be shown or hidden.
+  </div>
+
+  <script>
+    const btn  = document.getElementById("toggleBtn");
+    const box  = document.getElementById("myBox");
+
+    btn.addEventListener("click", function () {
+      // toggle the CSS class "hidden" on the box
+      box.classList.toggle("hidden");
+    });
+  </script>
+</body>
+</html>
+
+

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+      font-family: 'Roboto', Arial, sans-serif;
+    }
+    .container {
+      max-width: 900px;
+      margin: 50px auto;
+      display: flex;
+      gap: 30px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .card {
+      background: #fff;
+      box-shadow: 0 8px 24px rgba(44, 62, 80, 0.23);
+      border-radius: 16px;
+      overflow: hidden;
+      width: 280px;
+      position: relative;
+      transition: transform 0.3s cubic-bezier(.25,.8,.25,1), box-shadow 0.3s;
+    }
+    .card:hover {
+      transform: translateY(-10px) scale(1.05);
+      box-shadow: 0 16px 32px rgba(231, 76, 60, 0.18);
+    }
+    .card-title {
+      font-size: 1.6em;
+      color: #34495e;
+      margin: 24px;
+      padding-bottom: 4px;
+      border-bottom: 2px solid #a8edea;
+    }
+    .card-desc {
+      font-size: 1em;
+      color: #666;
+      margin: 24px;
+    }
+    .highlight {
+      background: linear-gradient(90deg,#ffe082 70%,#ffb300 100%);
+      color: #e74c3c;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-weight: bold;
+      transition: background 0.2s;
+    }
+    .highlight:hover {
+      background: linear-gradient(90deg, #81ecec 80%, #00cec9 100%);
+      color: #0984e3;
+      cursor: pointer;
+      text-shadow: 0 0 6px #dff9fb;
+    }
+    @media (max-width:650px) {
+      .container {
+        flex-direction: column;
+        align-items: center;
+      }
+      .card {
+        width: 90vw;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="card">
+      <div class="card-title">
+        Using <span class="highlight">div</span> for Blocks
+      </div>
+      <div class="card-desc">
+        The <span class="highlight">div</span> element organizes page sections, ideal for layouts like cards, columns, and rows. Try hovering over the highlighted words for a surprise!
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">
+        Creative <span class="highlight">span</span> Styling
+      </div>
+      <div class="card-desc">
+        <span class="highlight">Span</span> is perfect for colorizing keywords, drop caps, or making dynamic interactions like text highlights on mouseover, as done here.
+      </div>
+    </div>
+  </div>
+</body>
+</html>

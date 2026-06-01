@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>HTML form having text input , radio buttons , checkboxes , select menus and submit/reset buttons</title>
+    </head>
+    <body style="background-color: bisque; font-style: italic; font-family: cursive; text-align: center;">
+        <div>
+            <form action="/submit" method="post">
+
+            <fieldset>
+                <legend style="text-align: center; font-size: 50px; ">Food Order Form</legend>
+
+                  <h4> Your Details</h4>
+
+                <label>Name:</label>
+                <input type="text" id="fullname" name="fullname" placeholder="enter your fullname" required><br><br>
+                <label>Email:</label>
+                <input type="email" id="email" name="email" required><br><br>
+                <label>Mobile No. :</label>
+                <input type="tel" id="phone" name="phone" required><br><br>
+                <label>Address:</label>
+                <input type="text" id="address" name="address" required><br><br>
+
+                  <h4>Food Details</h4>
+
+                  <label>Food Type :</label>
+                  <input type="radio" id="veg" name="food type" value="veg" required>
+                  <label for="veg">veg</label>
+                  <input type="radio" id="non veg" name="food type" value="non veg" required>
+                  <label for="non veg">non veg</label>  
+                  
+                  <h5> Thali Type ( For veg ) :</h5>
+                  <input type="radio" id="simple" name="Thali Type" value="Simple Thali" required>
+                  <label>Simple Thali</label><br>
+                  <input type="radio" id="Special" name="Thali Type" value=" Special Thali" required>
+                  <label>Special Thali</label><br>
+                  <input type="radio" id="Big" name="Thali Type" value="Big Thali" required>
+                  <label> Big Thali</label><br>
+                  <input type="radio" id="Mega" name="Thali Type" value="Meag Thali" required>
+                  <label>Mega Thali</label><br>
+
+
+                  <label><h5> Customized  Food Thali :</h5></label>
+                      <input type="checkbox" id="custom" name="Customized" value="rice">
+                      <label for="rice">rice</label><br>
+                      <input type="radio" id="rice" name="rice" value="half">
+                      <label>half</label><br>
+                      <input type="radio" value="full" id="rice" name="rice">
+                      <label>full</label><br>
+                      <input type="text" placeholder="enter any of your choice"><br><br>
+                      <input type="checkbox" id="custom" name="Customized" value="dal">
+                      <label for="dal">dal</label><br>
+                      <input type="radio" value="tadka" id="dal" name="dal">
+                      <labe>tadka</labe><br>
+                      <input type="radio" value="dal makhni" id="dal" name="dal">
+                      <label>dal makhni </label><br>
+                      <input type="text" placeholder="enter any of your choice"><br><br>
+                      <input type="checkbox" id="custom" name="Customized" value="sabji">
+                      <label for="sabji">sabji</label><br>
+                      <input type="radio" value="palak panir" id="sabji" name="sabji">
+                      <label>palak panir</label><br>
+                      <input type="radio" value="aloo gobii" id="sabji" name="sabji">
+                      <label>aloo gobii</label><br>
+                      <input type="text" placeholder="enter any of your choice"><br><br>
+                      <input type="checkbox" id="custom" name="Customized" value="salad">
+                      <label for="salad">salad</label> <br>
+                      <input type="checkbox" id="custom" name="Customized" value="aachar">
+                      <label for="aachar">aachar</label><br>
+                    <input type="checkbox" id="custom" name="Customized" value="roti">
+                      <label for="roti">roti</label><br><br>
+                      <label>1.</label>
+                      <input type="text" placeholder="enter any of your choice"><br><br>
+                      <label>2.</label>
+                      <input type="text" placeholder="enter any of your choice"><br><br>
+                      <label>3.</label>
+                      <input type="text" placeholder="enter any of your choice"><br><br>
+                      <label>4.</label>
+                      <input type="text" placeholder="enter any of your choice"><br> 
+
+                      <h4>Regional Thali (Special) :</h4>
+
+                       <select id="regional thali" name="region thali" required>
+                       <option value="">-- select thali--</option>
+                       <option value="Gujrat">Gujrati thali</option>
+                       <option value="Bihar">Bihari Thali (Litti Chhokha  )</option>
+                       <option value="kasmir">kasmiri  thali</option>
+                       <option value="up"> Uttar pradesh Special</option>
+                       <option value="south">Southern Dishes Special</option>
+                       <option value="Eastern "> Eastern States Special thali</option>
+                       <option value="central">central india Special </option>
+                       <option value="france"> french</option>
+                       <option value="japan"> japanese</option>
+                       <option value="china">chinese</option>
+                       <option value="spain">spainise</option>
+                   </select>  
+
+                   <h4> FAST FOOD CORNER :</h4>
+                    <select id="ff" name="ff" required>
+                        <option value="">-- select--</option>
+                        <option >burger</option>
+                        <option >pizza</option>
+                        <option >cold drinks</option>
+                        <option >maggie</option>
+                        <option >sandwich</option>
+                        <option >french fries</option>
+                        <option >popcorn</option>
+                    </select> 
+
+                    <br><br>
+
+                    <label>payment method :</label>
+                    <input type="radio" id="pm" name="pm" value="Cash On delivery">
+                    <label>Cash On delivery</label>
+                    <input type="radio" id="pm" name="pm" value=" pre-order online payment">
+                    <label>pre-order online payment</label>
+                    <input type="radio" id="pm" name="pm" value="post-order online payment">
+                    <label>post-order online payment</label>
+                   
+                    <br><br>
+                    
+                <button type="submit" class="submit-btn">Submit form</button>
+                <button type="reset" class="reset-btn">Reset Form</button>
+
+            </fieldset>
+            </form>
+        </div>
+    </body>
+</html>

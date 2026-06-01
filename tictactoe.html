@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tic Tac Toe Game</title>
+    <style>
+        :root {
+            --color-primary: #2180a4;
+            --color-text: #134252;
+            --color-surface: #f5f5f5;
+            --color-border: rgba(94, 82, 64, 0.2);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            padding: 40px;
+            max-width: 500px;
+            width: 100%;
+        }
+
+        h1 {
+            text-align: center;
+            color: var(--color-text);
+            margin-bottom: 30px;
+            font-size: 2.5em;
+            letter-spacing: 2px;
+        }
+
+        .display {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 1.2em;
+            color: var(--color-text);
+        }
+
+        .display span {
+            font-weight: bold;
+            font-size: 1.4em;
+            color: var(--color-primary);
+        }
+
+        .display span.o {
+            color: #f39c12;
+        }
+
+        .board {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-bottom: 30px;
+        }
+
+        .tile {
+            width: 100px;
+            height: 100px;
+            background: var(--color-surface);
+            border: 2px solid var(--color-border);
+            border-radius: 8px;
+            font-size: 2.5em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: var(--color-text);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .tile:hover {
+            background: #e8e8e8;
+            transform: scale(1.05);
+        }
+
+        .tile.x {
+            color: var(--color-primary);
+        }
+
+        .tile.o {
+            color: #f39c12;
+        }
+
+        .announcement {
+            text-align: center;
+            font-size: 1.5em;
+            font-weight: bold;
+            margin-bottom: 20px;
+            min-height: 30px;
+            color: #27ae60;
+        }
+
+        .announcement.draw {
+            color: #e74c3c;
+        }
+
+        .controls {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        button {
+            padding: 12px 30px;
+            font-size: 1em;
+            font-weight: bold;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: var(--color-primary);
+            color: white;
+        }
+
+        button:hover {
+            background: #1a6a8a;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(33, 128, 164, 0.4);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        button.secondary {
+            background: #95a5a6;
+        }
+
+        button.secondary:hover {
+            background: #7f8c8d;
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 20px;
+            }
+
+            h1 {
+                font-size: 2em;
+                margin-bottom: 20px;
+            }
+
+            .tile {
+                width: 80px;
+                height: 80px;
+                font-size: 2em;
+            }
+
+            .board {
+                gap: 8px;
+            }
+
+            button {
+                padding: 10px 20px;
+                font-size: 0.9em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Tic Tac Toe</h1>
+
+        <div class="display">
+            <span>Current Player: </span>
+            <span id="player-turn" class="x">X</span>
+        </div>
+
+        <div class="board" id="board">
+            <div class="tile" data-index="0"></div>
+            <div class="tile" data-index="1"></div>
+            <div class="tile" data-index="2"></div>
+            <div class="tile" data-index="3"></div>
+            <div class="tile" data-index="4"></div>
+            <div class="tile" data-index="5"></div>
+            <div class="tile" data-index="6"></div>
+            <div class="tile" data-index="7"></div>
+            <div class="tile" data-index="8"></div>
+        </div>
+
+        <div class="announcement" id="announcement"></div>
+
+        <div class="controls">
+            <button onclick="resetGame()">Reset Game</button>
+        </div>
+    </div>
+
+    <script>
+        const board = ['', '', '', '', '', '', '', '', ''];
+        let currentPlayer = 'X';
+        let gameActive = true;
+
+        const winningCombinations = [
+            [0, 1, 2],
+            [3, 4, 5],
+            [6, 7, 8],
+            [0, 3, 6],
+            [1, 4, 7],
+            [2, 5, 8],
+            [0, 4, 8],
+            [2, 4, 6]
+        ];
+
+        const tiles = document.querySelectorAll('.tile');
+        const playerTurnDisplay = document.getElementById('player-turn');
+        const announcement = document.getElementById('announcement');
+
+        // Add event listeners to all tiles
+        tiles.forEach(tile => {
+            tile.addEventListener('click', handleTileClick);
+        });
+
+        function handleTileClick(event) {
+            const tile = event.target;
+            const index = tile.getAttribute('data-index');
+
+            // Check if tile is already filled or game is not active
+            if (board[index] !== '' || !gameActive) {
+                return;
+            }
+
+            // Update board and tile
+            board[index] = currentPlayer;
+            tile.textContent = currentPlayer;
+            tile.classList.add(currentPlayer.toLowerCase());
+
+            // Check for winner
+            if (checkWinner(currentPlayer)) {
+                announcement.textContent = `🎉 Player ${currentPlayer} Wins!`;
+                announcement.classList.remove('draw');
+                gameActive = false;
+                return;
+            }
+
+            // Check for draw
+            if (board.every(cell => cell !== '')) {
+                announcement.textContent = "It's a Draw!";
+                announcement.classList.add('draw');
+                gameActive = false;
+                return;
+            }
+
+            // Switch player
+            currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
+            playerTurnDisplay.textContent = currentPlayer;
+            playerTurnDisplay.className = currentPlayer.toLowerCase();
+        }
+
+        function checkWinner(player) {
+            return winningCombinations.some(combination => {
+                return combination.every(index => board[index] === player);
+            });
+        }
+
+        function resetGame() {
+            board.fill('');
+            currentPlayer = 'X';
+            gameActive = true;
+            announcement.textContent = '';
+            announcement.classList.remove('draw');
+            playerTurnDisplay.textContent = 'X';
+            playerTurnDisplay.className = 'x';
+
+            tiles.forEach(tile => {
+                tile.textContent = '';
+                tile.classList.remove('x', 'o');
+            });
+        }
+    </script>
+</body>
+</html>

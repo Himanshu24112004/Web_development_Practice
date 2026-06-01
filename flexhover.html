@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flex Hover</title>
+    <style>
+        body{
+            background-color: rgb(52, 51, 51);
+            background-image: -webkit-linear-gradient(135deg, red, yellow,orange);
+        }
+      h1{
+        text-align: center;
+        font-size: 100px;
+        color: rgb(14, 120, 220);       
+      }
+      .container{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        
+      }
+        .card{
+            height: 250px;
+            width: 200px;
+             background-color: white;
+             flex: 1;
+             border-radius: 20px;
+             padding: auto;  
+             text-align: center;         
+        }
+          
+        .cardo{
+            height: 250px;
+            width: 200px;
+            background-color: rgb(14, 120, 220);
+            flex: 1;
+            border-radius: 20px;
+             padding: auto;   
+             text-align: center;        
+        }
+
+        .card:hover{
+            flex: 3;
+            cursor: pointer;
+        }
+        .cardo:hover{
+            flex: 2;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>Flex Magic........</h1>
+    <div class="container">
+        <div class="cardo">flex1</div>
+        <div class="card">flex2</div>
+        <div class="cardo">flex3</div>
+        <div class="card">flex4</div>
+        <div class="cardo">flex5</div>
+        <div class="card">flex6</div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Responsive Design with Media Queries</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+    }
+
+    /* Default styles (Mobile First) */
+    header {
+      background-color: #333;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      padding: 10px;
+    }
+
+    nav a {
+      display: block;
+      padding: 10px;
+      background-color: #444;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+    }
+
+    nav a:hover {
+      background-color: #555;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      padding: 20px;
+    }
+
+    .sidebar {
+      background-color: #f0f0f0;
+      padding: 15px;
+      border-radius: 5px;
+    }
+
+    .main-content {
+      background-color: #ffffff;
+      padding: 15px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 15px;
+    }
+
+    .card {
+      background-color: #e8e8e8;
+      padding: 20px;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    footer {
+      background-color: #333;
+      color: white;
+      text-align: center;
+      padding: 20px;
+      margin-top: 20px;
+    }
+
+    /* Tablet View (768px and above) */
+    @media (min-width: 768px) {
+      nav ul {
+        flex-direction: row;
+        justify-content: center;
+      }
+
+      nav a {
+        flex: 1;
+        text-align: center;
+      }
+
+      .container {
+        flex-direction: row;
+      }
+
+      .sidebar {
+        flex: 1;
+        min-width: 200px;
+      }
+
+      .main-content {
+        flex: 2;
+      }
+
+      .grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    /* Desktop View (1024px and above) */
+    @media (min-width: 1024px) {
+      header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      header h1 {
+        flex: 1;
+      }
+
+      nav ul {
+        flex: 2;
+        justify-content: flex-end;
+      }
+
+      nav a {
+        flex: none;
+        width: auto;
+        padding: 10px 20px;
+      }
+
+      .grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Responsive Website</h1>
+    <nav>
+      <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <div class="container">
+    <aside class="sidebar">
+      <h2>Sidebar</h2>
+      <p>This sidebar appears on the right on tablets and desktops, but moves below the main content on mobile.</p>
+    </aside>
+
+    <main class="main-content">
+      <h2>Main Content</h2>
+      <p>This is the main content area. It adjusts its layout based on the screen size using media queries.</p>
+
+      <div class="grid">
+        <div class="card">
+          <h3>Card 1</h3>
+          <p>On mobile: 1 column</p>
+        </div>
+        <div class="card">
+          <h3>Card 2</h3>
+          <p>On tablet: 2 columns</p>
+        </div>
+        <div class="card">
+          <h3>Card 3</h3>
+          <p>On desktop: 3 columns</p>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 Responsive Design. All rights reserved.</p>
+  </footer>
+</body>
+</html>
